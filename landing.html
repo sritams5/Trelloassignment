@@ -1,0 +1,131 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Trello</title>
+		<style type="text/css">
+			.listcontectclass{
+
+			}
+			body{
+				    background-color: rgb(75, 191, 107);
+			}
+			.divclass{
+				background: #e2e4e6;
+				border: 1px solid gray;
+				border-radius: 4px;
+				width: 300px;
+				float: left;
+				overflow: hidden;
+				margin: auto;
+			}
+			.divclass li{
+				background: white;
+				border: 1px solid gray;
+				border-radius: 4px;
+				margin: 10px;
+			}
+			ul{
+				padding: 10px;
+				list-style-type: none;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="createList" placeholder="Create a list">
+		<button onclick="listFunction()">Create List</button>
+
+		<script type="text/javascript">
+			var createList = document.getElementById("createList");
+			var iid=0;
+			createList.addEventListener("keyup", function(event) {
+			  event.preventDefault();
+			  if (event.keyCode === 13) {
+			    listFunction();
+			  }
+			});
+			function listFunction() {
+	 			createNewList(document.getElementById('createList').value);
+			    createList.value="";
+			}
+			function createNewList(text){
+				iid++;
+				var section = document.createElement("section");
+				section.id = "list" + iid;
+				section.name = "list" + iid;
+				section.className = 'divclass';
+
+
+				var h2 = document.createElement("h2");
+					h2.textContent = text;
+
+				var inputContainer = document.createElement("input");
+	                inputContainer.type = "text";
+	                inputContainer.name = "listinput" + iid;
+	                inputContainer.id = "listinput" + iid;
+	                inputContainer.className = 'inputcontectclass';
+	                inputContainer.placeholder = 'Create a card';
+
+
+				var msgContainer = document.createElement('ul');
+					msgContainer.id = "listcontect" + iid;
+					msgContainer.name = "listcontect" + iid;
+					msgContainer.className = 'connected list ui-sortable';
+	/*				msgContainer.textContent = text;*/
+
+				var addCardBtn = document.createElement('button');	
+					addCardBtn.onclick = function() { 
+    					cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
+  					};
+					addCardBtn.textContent = 'Add Card';
+
+
+						inputContainer.addEventListener("keyup", function(event) {
+						  event.preventDefault();
+						  if (event.keyCode === 13) {
+						    cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
+						  }
+						});
+
+
+					section.appendChild(h2);
+					section.appendChild(inputContainer);
+					section.appendChild(addCardBtn);
+					section.appendChild(msgContainer);
+
+					document.body.appendChild(section);
+
+
+			}
+			function cardFunction(inputContainer,msgContainer,inputContainerid,msgContainerid) {
+	 			changeText2(inputContainer,msgContainer,inputContainerid,msgContainerid);
+						    	inputContainer.value="";
+						    	$('.connected').sortable({
+									connectWith: '.connected'
+								});
+			}
+			function changeText2(card,list,cardid,listid) {
+			    var card = card.value;
+			    var entry = document.createElement('li');
+			    entry.appendChild(document.createTextNode(card));
+			    list.appendChild(entry);
+			}
+		</script>
+		<!-- <script src="jquery.min.js"></script>
+		<script src="jquery.sortable.js"></script> -->
+		<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+		<script
+  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
+  crossorigin="anonymous"></script>
+		<script>
+			$(function() {			
+				$('.connected').sortable({
+					connectWith: '.connected'
+				});
+			});
+		</script>
+	</body>
+	</html>
