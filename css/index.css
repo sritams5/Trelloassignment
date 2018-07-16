@@ -1,0 +1,17 @@
+.navcss {
+  flex:1
+}
+#navbarWEX{
+  text-align: center;
+}
+#navbarWEX a{
+    color: #0079BF;
+    font-size: 20px;
+    border-radius: 6px;
+}
+.activelink{
+  background-color: #E4F0F6;
+}
+#navbarWEX a:hover{
+  background-color: lightgray;
+}

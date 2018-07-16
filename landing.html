@@ -72,8 +72,8 @@
 					msgContainer.className = 'connected list ui-sortable';
 	/*				msgContainer.textContent = text;*/
 
-				var addCardBtn = document.createElement('button');	
-					addCardBtn.onclick = function() { 
+				var addCardBtn = document.createElement('button');
+					addCardBtn.onclick = function() {
     					cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
   					};
 					addCardBtn.textContent = 'Add Card';
@@ -110,18 +110,12 @@
 			    list.appendChild(entry);
 			}
 		</script>
-		<!-- <script src="jquery.min.js"></script>
-		<script src="jquery.sortable.js"></script> -->
-		<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
-		<script
-  src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
-  integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
-  crossorigin="anonymous"></script>
+		<script src="js/jquery.min.js"></script>
+
+		<script src="js/jquery-ui.min.js"></script>
+
 		<script>
-			$(function() {			
+			$(function() {
 				$('.connected').sortable({
 					connectWith: '.connected'
 				});
