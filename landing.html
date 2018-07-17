@@ -1,125 +1,278 @@
-	<!DOCTYPE html>
-	<html>
-	<head>
-		<title>Trello</title>
-		<style type="text/css">
-			.listcontectclass{
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trello</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+	body{
+		background-color: rgb(75, 191, 107);
+		font-family: sans-serif;
+	}
+	.divclass{
+		background: #e2e4e6;
+		border: 1px solid gray;
+		border-radius: 4px;
+		margin: auto;
+		width: 100%;
+		height: auto;
+		float: left;
+		max-width: 368px;
+	}
+	ul{
+		list-style-type: none;
+	}
+	.list {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.listItem{
+		background-color: #fff;
+		margin-bottom: 5px;
+	}
+	.listItem li:last-child {
+		margin-bottom: 0px;
+	}
+	.connected{
+		min-height: 30px;
+	}
+	.navbar{
+		background: rgba(0,0,0,.15)!important;
+	}
+	#mainContainer{
+		margin-top: 20px;
+	}
+	h5{
+		padding: 0!important;
+		margin-top: 15px;
+	}
+	</style>
+</head>
+<body>
 
+	<nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav">
+    <div class="container justify-content-center">
+      <ul class="nav navbar-nav flex-fill navcss w-100 flex-nowrap">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Download</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Register</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">More</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav flex-fill justify-content-center">
+        <li class="nav-item"><a class="nav-link" href="#"><img src="img/logo.png"/></a></li>
+      </ul>
+      <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Help</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+	<!-- Page Content -->
+  <div class="container d-flex flex-wrap" id="mainContainer">
+		<section class="divclass row form-group">
+			<input type="text" id="createList" class="form-control col" placeholder="Create a list">
+			<button class="btn btn-success col" onclick="listFunction()">Create List</button>
+		</section>
+	</div>
+
+	<script type="text/javascript">
+	var createList = document.getElementById("createList");
+	var iid=0;
+	createList.addEventListener("keyup", function(event) {
+		event.preventDefault();
+		if (event.keyCode === 13) {
+			listFunction();
+		}
+	});
+	function listFunction() {
+		if(createList.value.trim() != ""){
+			createNewList(document.getElementById('createList').value);
+			createList.value="";
+		}
+	}
+	function createNewList(text){
+		iid++;
+		var section = document.createElement("section");
+		section.id = "list" + iid;
+		section.name = "list" + iid;
+		section.className = 'divclass row form-group';
+
+		var headerDiv = document.createElement("div");
+		headerDiv.id = "headerDiv" + iid;
+		headerDiv.name = "headerDiv" + iid;
+		headerDiv.className = 'col-sm-12 d-flex form-group';
+
+
+		var h5 = document.createElement("h5");
+		h5.textContent = text;
+		h5.className = 'col-sm-10';
+		h5.style = 'text-align:left';
+
+		// var closeBtn = document.createElement('button');
+		// closeBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-outline-danger';
+		// closeBtn.style = 'margin-top: 15px'
+		// closeBtn.textContent = 'x';
+		var spanBtn = document.createElement('span');
+		spanBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-link';
+		var h4d = document.createElement("h4");
+		h4d.textContent = '...';
+		spanBtn.appendChild(h4d);
+		spanBtn.onclick = function() {
+				document.getElementById("mainContainer").removeChild(section);
+		};
+		headerDiv.appendChild(h5);
+		headerDiv.appendChild(spanBtn);
+		var msgContainer = document.createElement('ul');
+		msgContainer.id = "listcontect" + iid;
+		msgContainer.name = "listcontect" + iid;
+		msgContainer.className = 'connected list col-sm-12';
+		var br = document.createElement('br');
+
+		var div = document.createElement("div");
+		div.id = "div" + iid;
+		div.name = "div" + iid;
+		div.className = 'col-sm-12 form-group';
+		var inputContainer = document.createElement("input");
+		inputContainer.type = "text";
+		inputContainer.name = "listinput" + iid;
+		inputContainer.id = "listinput" + iid;
+		inputContainer.className = 'col form-control';
+		inputContainer.placeholder = 'Create card';
+		inputContainer.addEventListener("keyup", function(event) {
+			event.preventDefault();
+			if (event.keyCode === 13) {
+				if(inputContainer.value.trim() != "")
+				{
+					cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
+				}
 			}
-			body{
-				    background-color: rgb(75, 191, 107);
+		});
+		var addCardBtn = document.createElement('button');
+		addCardBtn.textContent = '+ Add Card';
+		addCardBtn.className = 'col btn btn-primary';
+		addCardBtn.onclick = function() {
+			if(inputContainer.value.trim() != "")
+			{
+				cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
 			}
-			.divclass{
-				background: #e2e4e6;
-				border: 1px solid gray;
-				border-radius: 4px;
-				width: 300px;
-				float: left;
-				overflow: hidden;
-				margin: auto;
+		};
+
+
+
+		div.appendChild(inputContainer);
+		div.appendChild(addCardBtn);
+		section.appendChild(headerDiv);
+		section.appendChild(msgContainer);
+		section.appendChild(br);
+		section.appendChild(div);
+
+
+		document.getElementById("mainContainer").appendChild(section);
+	}
+	function cardFunction(inputContainer,msgContainer,inputContainerid,msgContainerid) {
+		createCard(inputContainer,msgContainer,inputContainerid,msgContainerid);
+		inputContainer.value="";
+		$('.connected').sortable({
+			connectWith: '.connected'
+		});
+	}
+	function createCard(card,list,cardid,listid) {
+		var cardval = card.value;
+		var entry = document.createElement('li');
+		entry.className = 'row listItem';
+		var span = document.createElement('span');
+		span.className = 'display col-sm-9 form-control';
+		span.appendChild(document.createTextNode(cardval));
+		var inputC = document.createElement("input");
+		inputC.type = "text";
+		inputC.className = 'edit col-sm-9 form-control';
+		inputC.style = 'display:none';
+
+		var editBtn = document.createElement('button');
+		editBtn.textContent = 'edit';
+		// var editBtn = document.createElement('input');
+		// editBtn.type = 'image';
+		// editBtn.src = 'img/editicon.png';
+		editBtn.className = 'off col-sm-3 btn btn-info';
+		editBtn.onclick = function() {
+			var item = this;
+			//console.log(getSiblings(item));
+			var siblings = getSiblings(item);
+			if(item.classList.contains("on")) {
+				//$(siblings[1]).hide().siblings(siblings[0]).show().text($(siblings[1]).val());
+				$(siblings[1]).hide();
+				$(siblings[0]).show();
+				$(siblings[0]).text($(siblings[1]).val());
+				item.textContent = 'edit';
+				item.classList.remove("on");
+				item.classList.remove("btn-danger");
+				item.classList.add("off");
+				item.classList.add("btn-info");
+			} else {
+				// $(siblings[0]).hide().siblings(siblings[1]).show().val($(siblings[0]).text()).focus();
+				$(siblings[0]).hide();
+				$(siblings[1]).show();
+				$(siblings[1]).val($(siblings[0]).text());
+				$(siblings[1]).focus();
+				item.textContent = 'save';
+				item.classList.remove("off");
+				item.classList.remove("btn-info");
+				item.classList.add("on");
+				item.classList.add("btn-danger");
 			}
-			.divclass li{
-				background: white;
-				border: 1px solid gray;
-				border-radius: 4px;
-				margin: 10px;
-			}
-			ul{
-				padding: 10px;
-				list-style-type: none;
-			}
-		</style>
-	</head>
-	<body>
-		<input type="text" id="createList" placeholder="Create a list">
-		<button onclick="listFunction()">Create List</button>
+			// item.src = 'img/editicon.png';
+		//	item.textContent = 'edit';
+		};
 
-		<script type="text/javascript">
-			var createList = document.getElementById("createList");
-			var iid=0;
-			createList.addEventListener("keyup", function(event) {
-			  event.preventDefault();
-			  if (event.keyCode === 13) {
-			    listFunction();
-			  }
-			});
-			function listFunction() {
-	 			createNewList(document.getElementById('createList').value);
-			    createList.value="";
-			}
-			function createNewList(text){
-				iid++;
-				var section = document.createElement("section");
-				section.id = "list" + iid;
-				section.name = "list" + iid;
-				section.className = 'divclass';
+		entry.appendChild(span);
+		entry.appendChild(inputC);
+		entry.appendChild(editBtn);
+		// entry.addEventListener("focusout", stopEdit);
+		list.appendChild(entry);
+	}
+	var getSiblings = function (elem) {
+		var siblings = [];
+		var sibling = elem.parentNode.firstChild;
+		var skipMe = elem;
+		for ( ; sibling; sibling = sibling.nextSibling )
+		if ( sibling.nodeType == 1 && sibling != elem )
+		siblings.push( sibling );
+		return siblings;
+	};
+	function elementChildren (element) {
+    var childNodes = element.childNodes,
+        children = [],
+        i = childNodes.length;
 
-
-				var h2 = document.createElement("h2");
-					h2.textContent = text;
-
-				var inputContainer = document.createElement("input");
-	                inputContainer.type = "text";
-	                inputContainer.name = "listinput" + iid;
-	                inputContainer.id = "listinput" + iid;
-	                inputContainer.className = 'inputcontectclass';
-	                inputContainer.placeholder = 'Create a card';
-
-
-				var msgContainer = document.createElement('ul');
-					msgContainer.id = "listcontect" + iid;
-					msgContainer.name = "listcontect" + iid;
-					msgContainer.className = 'connected list ui-sortable';
-	/*				msgContainer.textContent = text;*/
-
-				var addCardBtn = document.createElement('button');
-					addCardBtn.onclick = function() {
-    					cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
-  					};
-					addCardBtn.textContent = 'Add Card';
-
-
-						inputContainer.addEventListener("keyup", function(event) {
-						  event.preventDefault();
-						  if (event.keyCode === 13) {
-						    cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
-						  }
-						});
-
-
-					section.appendChild(h2);
-					section.appendChild(inputContainer);
-					section.appendChild(addCardBtn);
-					section.appendChild(msgContainer);
-
-					document.body.appendChild(section);
-
-
-			}
-			function cardFunction(inputContainer,msgContainer,inputContainerid,msgContainerid) {
-	 			changeText2(inputContainer,msgContainer,inputContainerid,msgContainerid);
-						    	inputContainer.value="";
-						    	$('.connected').sortable({
-									connectWith: '.connected'
-								});
-			}
-			function changeText2(card,list,cardid,listid) {
-			    var card = card.value;
-			    var entry = document.createElement('li');
-			    entry.appendChild(document.createTextNode(card));
-			    list.appendChild(entry);
-			}
-		</script>
-		<script src="js/jquery.min.js"></script>
-
-		<script src="js/jquery-ui.min.js"></script>
-
-		<script>
-			$(function() {
-				$('.connected').sortable({
-					connectWith: '.connected'
-				});
-			});
-		</script>
-	</body>
-	</html>
+    while (i--) {
+        if (childNodes[i].nodeType == 1) {
+            children.unshift(childNodes[i]);
+        }
+    }
+    return children;
+	}
+	// function stopEdit() {
+	// 	var children = elementChildren(this);
+	// 	$(children[1]).hide();
+	// 	$(children[0]).show();
+	// 	$(children[0]).text($(children[1]).val());
+	// 	children[2].classList.remove("on");
+	// 	children[2].classList.add("off");
+	// }
+	</script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
