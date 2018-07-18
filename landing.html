@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Trello</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<style type="text/css">
 	body{
 		background-color: rgb(75, 191, 107);
-		font-family: sans-serif;
+	}
+	*{
+		font-family: monospace;
 	}
 	.divclass{
-		background: #e2e4e6;
+		/* background: #e2e4e6; */
+		background-color: rgba(0, 0, 0, 0.5);
 		border: 1px solid gray;
 		border-radius: 4px;
 		margin: auto;
+		max-width: 368px;
+		min-height: 201px;
 		width: 100%;
 		height: auto;
-		float: left;
-		max-width: 368px;
+		opacity: 0.9;
 	}
 	ul{
 		list-style-type: none;
@@ -26,7 +32,6 @@
 		padding-right: 30px;
 	}
 	.listItem{
-		background-color: #fff;
 		margin-bottom: 5px;
 	}
 	.listItem li:last-child {
@@ -45,48 +50,151 @@
 		padding: 0!important;
 		margin-top: 15px;
 	}
+	.hidden {
+		display: none;
+	}
+	.popover-title {
+  text-align: center;
+}
+
+.custom-popover li {
+  border: none!important;
+  text-align: center;
+}
+
+.custom-popover li:nth-child(2) {
+  border-top: 1px solid #ccc!important;
+}
+
+.custom-popover li:last-child {
+  border-top: 1px solid #ccc!important;
+}
+.btn-primary{
+	background-color: yellowgreen;
+}
+.vertical-center-transparent {
+	margin: auto;
+	max-width: 368px;
+	min-height: 201px;
+	width: 100%;
+	height: auto;
+	padding: 0 15px;
+  display: flex;
+  align-items: center;
+	/* background-color: transparent; */
+	background-color: rgba(0, 0, 0, 0.5);
+}
+.vertical-center{
+	/* background: #e2e4e6; */
+	/* border: 1px solid gray; */
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 4px;
+	margin: auto;
+	max-width: 368px;
+	min-height: 201px;
+	width: 100%;
+	height: auto;
+	padding: 0 15px;
+  display: flex;
+  align-items: center;
+	opacity: 0.9;
+}
+#showBtn{
+	background-color: rgba(0,0,0,.12);
+	color: hsla(0,0%,100%,.7);
+	border: 0;
+}
+#showBtn:hover{
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+	/* border: 1px solid white; */
+}
+button.custombtnclass{
+	background-color: rgba(0,0,0,.12);
+	color: hsla(0,0%,100%,.7);
+	border: 0;
+}
+button.custombtnclass:hover{
+	background-color: rgba(0, 0, 0, 0.5);
+	color: white;
+}
+.btn-success{
+	max-width: 64px;
+  font-size: 10px;
+}
+.btn-link{
+	max-width: 64px;
+  font-size: 20px;
+	color:#999
+}
+.row{
+	margin-top: 0!important;
+}
+@media only screen and (min-width: 768px) {
+	.navbar-brand {
+	  transform: translateX(-50%);
+	  left: 50%;
+	  position: absolute;
+	}
+}
 	</style>
 </head>
 <body>
+	<nav class="navbar navbar-dark bg-dark navbar-toggleable-md navbar-expand-md ">
+	    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon"></span>
+	    </button>
+	    <a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo" id="brand" class="img-responsive"></a>
+	    <div class="collapse navbar-collapse" id="navbarCollapse">
+	      <ul class="navbar-nav mr-auto">
+	        <li class="nav-item active">
+	          <a class="nav-link" href="#">Boards <span class="sr-only">(current)</span></a>
+	        </li>
+	        <!-- <li class="nav-item">
+	          <a class="nav-link" href="#">Services</a>
+	        </li>
+	        <li class="nav-item">
+	          <a class="nav-link" href="#">Contact</a>
+	        </li> -->
+	      </ul>
+	      <form class="form-inline mt-2 mt-md-0">
+	        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+	        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+	      </form>
+	    </div>
+	  </nav>
 
-	<nav class="navbar navbar-expand-sm navbar-dark bg-dark main-nav">
-    <div class="container justify-content-center">
-      <ul class="nav navbar-nav flex-fill navcss w-100 flex-nowrap">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Download</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">More</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav flex-fill justify-content-center">
-        <li class="nav-item"><a class="nav-link" href="#"><img src="img/logo.png"/></a></li>
-      </ul>
-      <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Help</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 	<!-- Page Content -->
-  <div class="container d-flex flex-wrap" id="mainContainer">
-		<section class="divclass row form-group">
-			<input type="text" id="createList" class="form-control col" placeholder="Create a list">
-			<button class="btn btn-success col" onclick="listFunction()">Create List</button>
-		</section>
+	<div class="container d-flex flex-wrap" id="mainContainer">
+		<div class="jumbotron row vertical-center-transparent">
+				<section class="col-sm-12" style="display:none;">
+					<input type="text" id="createList" class="form-control col-sm-12" placeholder="Enter list title...">
+					<button class="btn btn-success col-sm-6" onclick="listFunction()">Add List</button>
+					<button class="btn btn-link col-sm-3" id="hideBtn">X</button>
+				</section>
+				<button type="button" id="showBtn" class="btn btn-light col-sm-12">+Add List</button>
+		</div>
+
+	<!-- loaded popover content -->
+	<div class="hidden example-popover-content">
+		<ul class="list-group custom-popover">
+	    <li class="list-group-item listselclass" onclick="showTip(this)">Add Card...</li>
+	    <li class="list-group-item listselclass" onclick="showTip(this)">Copy List...</li>
+	    <li class="list-group-item listselclass" onclick="showTip(this)">Move List...</li>
+			<li class="list-group-item listselclass" onclick="showTip(this)">Archieve This List</li>
+  	</ul>
 	</div>
 
+	<div class="hidden example-popover-title">
+		<h6>List Actions</h6>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 	<script type="text/javascript">
+	var poplist=document.getElementsByClassName("example");
 	var createList = document.getElementById("createList");
 	var iid=0;
 	createList.addEventListener("keyup", function(event) {
@@ -101,6 +209,27 @@
 			createList.value="";
 		}
 	}
+	function showTip(ele){
+		console.log(ele.textContent);
+	}
+	document.getElementById('showBtn').addEventListener("click", function(event) {
+		event.preventDefault();
+		var sibl=getSiblings(this);
+		sibl[0].style.display = "block";
+		this.style.display = 'none';
+		this.parentNode.classList.remove('vertical-center-transparent');
+		this.parentNode.classList.add('vertical-center');
+	});
+	document.getElementById('hideBtn').addEventListener("click", function(event) {
+		event.preventDefault();
+		var cursibl=getSiblings(this);
+		cursibl[0].value="";
+		var parentsibl=getSiblings(this.parentNode);
+		parentsibl[0].style.display = "block";
+		this.parentNode.style.display = 'none';
+		this.parentNode.parentNode.classList.add('vertical-center-transparent');
+		this.parentNode.parentNode.classList.remove('vertical-center');
+	});
 	function createNewList(text){
 		iid++;
 		var section = document.createElement("section");
@@ -116,23 +245,41 @@
 
 		var h5 = document.createElement("h5");
 		h5.textContent = text;
-		h5.className = 'col-sm-10';
-		h5.style = 'text-align:left';
+		h5.className = 'flex-grow-1';
+		h5.style = 'text-align:left;color:white;';
+		h5.setAttribute("contenteditable","true");
 
-		// var closeBtn = document.createElement('button');
-		// closeBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-outline-danger';
-		// closeBtn.style = 'margin-top: 15px'
-		// closeBtn.textContent = 'x';
-		var spanBtn = document.createElement('span');
-		spanBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-link';
-		var h4d = document.createElement("h4");
-		h4d.textContent = '...';
-		spanBtn.appendChild(h4d);
-		spanBtn.onclick = function() {
-				document.getElementById("mainContainer").removeChild(section);
+		var closeBtn = document.createElement('button');
+		closeBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-outline-danger';
+		closeBtn.style = 'margin-top: 15px'
+		closeBtn.textContent = 'x';
+		// var spanBtn = document.createElement('span');
+		// spanBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-link';
+		var closeA = document.createElement("h4");
+		closeA.textContent = 'x';
+		closeA.tabindex="0";
+		closeA.className = "btn btn-light";
+		closeA.style= 'font-size: 1.25rem;';
+		// closeA.setAttribute("data-trigger", "focus");
+		//
+		// $(closeA).popover({
+		// 	html : true,
+		// 	content: function() {
+		// 		return $(".example-popover-content").html();
+		// 	},
+		// 	title: function() {
+		// 		return $(".example-popover-title").html();
+		// 	}
+		// });
+		// spanBtn.appendChild(closeA);
+		// spanBtn.onclick = function() {
+		// 		document.getElementById("mainContainer").removeChild(section);
+		// };
+		closeA.onclick = function() {
+		 		document.getElementById("mainContainer").removeChild(section);
 		};
 		headerDiv.appendChild(h5);
-		headerDiv.appendChild(spanBtn);
+		headerDiv.appendChild(closeA);
 		var msgContainer = document.createElement('ul');
 		msgContainer.id = "listcontect" + iid;
 		msgContainer.name = "listcontect" + iid;
@@ -147,7 +294,7 @@
 		inputContainer.type = "text";
 		inputContainer.name = "listinput" + iid;
 		inputContainer.id = "listinput" + iid;
-		inputContainer.className = 'col form-control';
+		inputContainer.className = 'col-md-12 form-control';
 		inputContainer.placeholder = 'Create card';
 		inputContainer.addEventListener("keyup", function(event) {
 			event.preventDefault();
@@ -159,25 +306,46 @@
 			}
 		});
 		var addCardBtn = document.createElement('button');
-		addCardBtn.textContent = '+ Add Card';
-		addCardBtn.className = 'col btn btn-primary';
+		addCardBtn.textContent = 'Save Card';
+		addCardBtn.className = 'col-md-4 btn btn-primary';
 		addCardBtn.onclick = function() {
 			if(inputContainer.value.trim() != "")
 			{
 				cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
 			}
 		};
-
-
-
+		var closeCardBtn = document.createElement('button');
+		closeCardBtn.textContent = 'X';
+		closeCardBtn.className = 'btn btn-link col-sm-2';
+		closeCardBtn.onclick = function() {
+			var sib= getSiblings(this);
+			sib[0].value="";
+			var sib1= getSiblings(this.parentNode);
+			sib1[3].style.display = 'block';
+			this.parentNode.style.display = 'none';
+		};
 		div.appendChild(inputContainer);
 		div.appendChild(addCardBtn);
+		div.appendChild(closeCardBtn);
+		div.style = 'display:none';
+		var divBtn = document.createElement("div");
+		divBtn.id = "divBtn" + iid;
+		divBtn.name = "divBtn" + iid;
+		divBtn.className = 'col-sm-12 form-group';
+		var addCardDefaultBtn = document.createElement('button');
+		addCardDefaultBtn.textContent = "+Add Card"
+		addCardDefaultBtn.className = 'col-sm-12 btn form-group custombtnclass';
+		addCardDefaultBtn.addEventListener("click", function(event) {
+			var sib1= getSiblings(this.parentNode);
+			sib1[3].style.display = 'block';
+			this.parentNode.style.display = 'none';
+		});
+		divBtn.appendChild(addCardDefaultBtn);
 		section.appendChild(headerDiv);
 		section.appendChild(msgContainer);
 		section.appendChild(br);
+		section.appendChild(divBtn);
 		section.appendChild(div);
-
-
 		document.getElementById("mainContainer").appendChild(section);
 	}
 	function cardFunction(inputContainer,msgContainer,inputContainerid,msgContainerid) {
@@ -232,7 +400,7 @@
 				item.classList.add("btn-danger");
 			}
 			// item.src = 'img/editicon.png';
-		//	item.textContent = 'edit';
+			//	item.textContent = 'edit';
 		};
 
 		entry.appendChild(span);
@@ -243,6 +411,7 @@
 	}
 	var getSiblings = function (elem) {
 		var siblings = [];
+		//console.log(elem.parentNode);
 		var sibling = elem.parentNode.firstChild;
 		var skipMe = elem;
 		for ( ; sibling; sibling = sibling.nextSibling )
@@ -251,17 +420,30 @@
 		return siblings;
 	};
 	function elementChildren (element) {
-    var childNodes = element.childNodes,
-        children = [],
-        i = childNodes.length;
+		var childNodes = element.childNodes,
+		children = [],
+		i = childNodes.length;
 
-    while (i--) {
-        if (childNodes[i].nodeType == 1) {
-            children.unshift(childNodes[i]);
-        }
-    }
-    return children;
+		while (i--) {
+			if (childNodes[i].nodeType == 1) {
+				children.unshift(childNodes[i]);
+			}
+		}
+		return children;
 	}
+
+	$(function(){
+		$('[rel="popover"]').popover({
+			container: 'body',
+			html: true,
+			content: function () {
+				var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
+				return clone;
+			}
+		}).click(function(e) {
+			e.preventDefault();
+		});
+	});
 	// function stopEdit() {
 	// 	var children = elementChildren(this);
 	// 	$(children[1]).hide();
@@ -271,8 +453,5 @@
 	// 	children[2].classList.add("off");
 	// }
 	</script>
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
 </body>
 </html>

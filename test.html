@@ -1,0 +1,68 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+<style media="screen">
+.popover-title {
+text-align: center;
+}
+
+.custom-popover li {
+border: none!important;
+text-align: center;
+}
+
+.custom-popover li:nth-child(2) {
+border-top: 1px solid #ccc!important;
+}
+
+.custom-popover li:last-child {
+border-top: 1px solid #ccc!important;
+}
+</style>
+<div class="form-group">
+  <a href="#" data-toggle="popover" data-placement="bottom" data-toggle="popover" title="Bill Category"><input class="form-control input-sm" id="category" type="text" placeholder="Select category">
+  </a>
+</div>
+
+<div class="form-group">
+  <input class="form-control input-sm" id="Description" type="text" placeholder="Description">
+</div>
+
+<div class="form-group">
+  <input class="form-control input-sm" id="Date" type="text" placeholder="Date">
+</div>
+
+<div class="form-group">
+  <input class="form-control input-sm" id="Amount" type="text" placeholder="Amount">
+</div>
+
+<title>Bootstrap Example</title>
+
+<!-- loaded popover content -->
+<div id="popover-content" style="display: none">
+  <ul class="list-group custom-popover">
+    <li class="list-group-item">Airport Pickup</li>
+    <li class="list-group-item">Food and Beverage</li>
+    <li class="list-group-item">Yoga Class</li>
+  </ul>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+$('[data-toggle="popover"]').popover({
+  html: true,
+  content: function() {
+    return $('#popover-content').html();
+  }
+});
+});
+$(document).on('click', function (e) {
+    $('[data-toggle="popover"],[data-original-title]').each(function () {
+        //the 'is' for buttons that trigger popups
+        //the 'has' for icons within a button that triggers a popup
+        if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+            (($(this).popover('hide').data('bs.popover')||{}).inState||{}).click = false  // fix for BS 3.3.6
+        }
+
+    });
+});
+</script>
