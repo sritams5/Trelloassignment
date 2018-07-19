@@ -126,31 +126,38 @@ if (localStorage.getItem(boardnamehead) === null) {
 	document.getElementById('createListid').style.display='none';
 	document.getElementById('mainContainer').innerHTML=localStorage.getItem(boardnamehead);
 	$('.connected').sortable({
-		connectWith: '.connected'
+		connectWith: '.connected',
+		stop: function(event, ui) {
+     	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+    	}
 	});
-	jQuery.fn.swap = function(b){
+
+
+jQuery.fn.swap = function(b){ 
     // method from: http://blog.pengoworks.com/index.cfm/2008/9/24/A-quick-and-dirty-swap-method-for-jQuery
-    b = jQuery(b)[0];
-    var a = this[0];
-    var t = a.parentNode.insertBefore(document.createTextNode(''), a);
-    b.parentNode.insertBefore(a, b);
-    t.parentNode.insertBefore(b, t);
-    t.parentNode.removeChild(t);
-    return this;
+    b = jQuery(b)[0]; 
+    var a = this[0]; 
+    var t = a.parentNode.insertBefore(document.createTextNode(''), a); 
+    b.parentNode.insertBefore(a, b); 
+    t.parentNode.insertBefore(b, t); 
+    t.parentNode.removeChild(t); 
+    return this; 
 };
 
 
-$( ".divclass" ).draggable({ revert: true, helper: "clone" });
+$( ".divclass" ).draggable({ 
+	revert: true, 
+	helper: "clone" });
 
 $( ".divclass" ).droppable({
-    accept: ".dragdrop",
+    accept: ".divclass",
     activeClass: "ui-state-hover",
     hoverClass: "ui-state-active",
     drop: function( event, ui ) {
 
         var draggable = ui.draggable, droppable = $(this),
             dragPos = draggable.position(), dropPos = droppable.position();
-
+        
         draggable.css({
             left: dropPos.left+'px',
             top: dropPos.top+'px'
@@ -161,9 +168,15 @@ $( ".divclass" ).droppable({
             top: dragPos.top+'px'
         });
         draggable.swap(droppable);
+        setTimeout(function() {
+        localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+        }, 1000);
     }
 });
-	var el=document.querySelectorAll("input[type=text]")
+
+
+
+ 	var el=document.querySelectorAll("input[type=text]")
 
 	for(var i=0; i < el.length; i++){
 	    el[i].addEventListener('keyup', function (event) {
@@ -410,31 +423,51 @@ function cardFunction(inputContainer,msgContainer,inputContainerid,msgContaineri
 	createCard(inputContainer,msgContainer,inputContainerid,msgContainerid);
 	inputContainer.value="";
 	$('.connected').sortable({
-		connectWith: '.connected'
+		connectWith: '.connected',
+		stop: function(event, ui) {
+     	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+    	}
 	});
-	$( ".divclass" ).draggable({ revert: true, helper: "clone" });
+		jQuery.fn.swap = function(b){ 
+    // method from: http://blog.pengoworks.com/index.cfm/2008/9/24/A-quick-and-dirty-swap-method-for-jQuery
+    b = jQuery(b)[0]; 
+    var a = this[0]; 
+    var t = a.parentNode.insertBefore(document.createTextNode(''), a); 
+    b.parentNode.insertBefore(a, b); 
+    t.parentNode.insertBefore(b, t); 
+    t.parentNode.removeChild(t); 
+    return this; 
+};
 
-	$( ".divclass" ).droppable({
-	    accept: ".dragdrop",
-	    activeClass: "ui-state-hover",
-	    hoverClass: "ui-state-active",
-	    drop: function( event, ui ) {
 
-	        var draggable = ui.draggable, droppable = $(this),
-	            dragPos = draggable.position(), dropPos = droppable.position();
+$( ".divclass" ).draggable({ 
+	revert: true, 
+	helper: "clone" });
 
-	        draggable.css({
-	            left: dropPos.left+'px',
-	            top: dropPos.top+'px'
-	        });
+$( ".divclass" ).droppable({
+    accept: ".divclass",
+    activeClass: "ui-state-hover",
+    hoverClass: "ui-state-active",
+    drop: function( event, ui ) {
 
-	        droppable.css({
-	            left: dragPos.left+'px',
-	            top: dragPos.top+'px'
-	        });
-	        draggable.swap(droppable);
-	    }
-	});
+        var draggable = ui.draggable, droppable = $(this),
+            dragPos = draggable.position(), dropPos = droppable.position();
+        
+        draggable.css({
+            left: dropPos.left+'px',
+            top: dropPos.top+'px'
+        });
+
+        droppable.css({
+            left: dragPos.left+'px',
+            top: dragPos.top+'px'
+        });
+        draggable.swap(droppable);
+		setTimeout(function() {
+        localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+        }, 1000);
+    }
+});
 }
 function createCard(card,list,cardid,listid) {
 	var cardval = card.value;
@@ -514,18 +547,49 @@ function elementChildren (element) {
 	}
 	return children;
 }
-
-$(function(){
-	$('[rel="popover"]').popover({
-		container: 'body',
-		html: true,
-		content: function () {
-			var clone = $($(this).data('popover-content')).clone(true).removeClass('hide');
-			return clone;
-		}
-	}).click(function(e) {
-		e.preventDefault();
+$('.connected').sortable({
+		connectWith: '.connected',
+		stop: function(event, ui) {
+     	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+    	}
 	});
+jQuery.fn.swap = function(b){ 
+    // method from: http://blog.pengoworks.com/index.cfm/2008/9/24/A-quick-and-dirty-swap-method-for-jQuery
+    b = jQuery(b)[0]; 
+    var a = this[0]; 
+    var t = a.parentNode.insertBefore(document.createTextNode(''), a); 
+    b.parentNode.insertBefore(a, b); 
+    t.parentNode.insertBefore(b, t); 
+    t.parentNode.removeChild(t); 
+    return this; 
+};
+
+
+$( ".divclass" ).draggable({ revert: true, helper: "clone" });
+
+$( ".divclass" ).droppable({
+    accept: ".divclass",
+    activeClass: "ui-state-hover",
+    hoverClass: "ui-state-active",
+    drop: function( event, ui ) {
+
+        var draggable = ui.draggable, droppable = $(this),
+            dragPos = draggable.position(), dropPos = droppable.position();
+        
+        draggable.css({
+            left: dropPos.left+'px',
+            top: dropPos.top+'px'
+        });
+
+        droppable.css({
+            left: dragPos.left+'px',
+            top: dragPos.top+'px'
+        });
+        draggable.swap(droppable);
+        setTimeout(function() {
+        localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
+        }, 1000);
+    }
 });
 </script>
 </body>
