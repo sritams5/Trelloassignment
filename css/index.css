@@ -1,17 +1,117 @@
 .navcss {
   flex:1
 }
-#navbarWEX{
+/* #navbarWEX{
   text-align: center;
-}
-#navbarWEX a{
+} */
+/* #navbarWEX a{
     color: #0079BF;
     font-size: 20px;
     border-radius: 6px;
-}
-.activelink{
+} */
+/* .activelink{
   background-color: #E4F0F6;
-}
-#navbarWEX a:hover{
+} */
+/* #navbarWEX a:hover{
   background-color: lightgray;
+} */
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+.card-custom {
+        max-width: 128px;
+    }
+body{
+  background-color: aliceblue;
+}
+#showBtn{
+  background-color: rgba(0,0,0,.12);
+  color: hsla(0,0%,100%,.7);
+  border: 0;
+}
+#showBtn:hover{
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  /* border: 1px solid white; */
+}
+@media only screen and (min-width: 768px) {
+  .navbar-brand {
+    transform: translateX(-50%);
+    left: 50%;
+    position: absolute;
+  }
+  #firstsection{
+    min-height: 258.594px;
+    height: auto;
+  }
+  #thirdsection{
+    min-height: 258.594px;
+    height: auto;
+  }
+}
+#topnav{
+  background: #026aa7!important;
+}
+.card{
+  background-color: antiquewhite;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.form-rounded {
+  border-radius: 1rem;
+}
+.modal-content{
+  background-image: url('../img/modalback.jpg');
+  background-size: 100%;
+  /* opacity: 0.9; */
+}
+
+#boardname{
+  background-color: rgba(0,0,0,.12);
+  color: hsla(0,0%,100%,.7);
+  border: 0;
+  font-weight: bold;
+}
+#boardname:hover{
+  /* background-color: rgba(0, 0, 0, 0.5); */
+  /* font-weight: bold!important; */
+  color: white;
+  /* border: 1px solid white; */
+}
+.close{
+  color: white!important;
+}
+a.card-title{
+  font-size: 20px;
+}
+.hidden {
+  display: none;
+}
+.popover-title {
+  text-align: center;
+}
+
+.custom-popover li {
+  border: none!important;
+  text-align: center;
+}
+
+.custom-popover li:nth-child(2) {
+  border-top: 1px solid #ccc!important;
+}
+
+.custom-popover li:last-child {
+  border-top: 1px solid #ccc!important;
+}
+/* .modal-dialog {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+}
+
+.modal-content {
+  height: 100%;
+  border-radius: 0;
+} */

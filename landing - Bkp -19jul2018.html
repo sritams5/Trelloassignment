@@ -7,7 +7,142 @@
 
 	<title>Trello</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/landing.css" rel="stylesheet">
+	<style type="text/css">
+	body{
+		background-color: rgb(75, 191, 107);
+	}
+	*{
+		font-family: monospace;
+	}
+	.divclass{
+		/* background: #e2e4e6; */
+		background-color: rgba(0, 0, 0, 0.5);
+		border: 1px solid gray;
+		border-radius: 6px;
+		margin: auto;
+		max-width: 368px;
+		min-height: 201px;
+		width: 100%;
+		height: auto;
+		opacity: 0.9;
+		display: inline-block;
+    float: left;
+	}
+	ul{
+		list-style-type: none;
+	}
+	.list {
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.listItem{
+		margin-bottom: 5px;
+	}
+	.listItem li:last-child {
+		margin-bottom: 0px;
+	}
+	.connected{
+		min-height: 30px;
+	}
+	.navbar{
+		background: rgba(0,0,0,.15)!important;
+	}
+	#mainContainer{
+		margin-top: 20px;
+	}
+	h5{
+		padding: 0!important;
+		margin-top: 15px;
+	}
+	.hidden {
+		display: none;
+	}
+	.popover-title {
+		text-align: center;
+	}
+
+	.custom-popover li {
+		border: none!important;
+		text-align: center;
+	}
+
+	.custom-popover li:nth-child(2) {
+		border-top: 1px solid #ccc!important;
+	}
+
+	.custom-popover li:last-child {
+		border-top: 1px solid #ccc!important;
+	}
+	.btn-primary{
+		background-color: yellowgreen;
+	}
+	.vertical-center-transparent {
+		margin: auto;
+		border-radius: 6px;
+		max-width: 368px;
+		min-height: 201px;
+		width: 100%;
+		height: auto;
+		padding: 0 15px;
+		display: flex;
+		align-items: center;
+		/* background-color: transparent; */
+		background-color: rgba(0, 0, 0, 0.5);
+	}
+	.vertical-center{
+		/* background: #e2e4e6; */
+		/* border: 1px solid gray; */
+		background-color: rgba(0, 0, 0, 0.5);
+		border-radius: 6px;
+		margin: auto;
+		max-width: 368px;
+		min-height: 201px;
+		width: 100%;
+		height: auto;
+		padding: 0 15px;
+		display: flex;
+		align-items: center;
+		opacity: 0.9;
+	}
+	#showBtn{
+		background-color: rgba(0,0,0,.12);
+		color: hsla(0,0%,100%,.7);
+		border: 0;
+	}
+	#showBtn:hover{
+		background-color: rgba(0, 0, 0, 0.5);
+		color: white;
+		/* border: 1px solid white; */
+	}
+	button.custombtnclass{
+		background-color: rgba(0,0,0,.12);
+		color: hsla(0,0%,100%,.7);
+		border: 0;
+	}
+	button.custombtnclass:hover{
+		background-color: rgba(0, 0, 0, 0.5);
+		color: white;
+	}
+	.btn-success{
+		max-width: 64px;
+		font-size: 10px;
+	}
+	.btn-link{
+		max-width: 64px;
+		font-size: 20px;
+		color:#999
+	}
+	.row{
+		margin-top: 0!important;
+	}
+	@media only screen and (min-width: 768px) {
+		.navbar-brand {
+			transform: translateX(-50%);
+			left: 50%;
+			position: absolute;
+		}
+	}
+	</style>
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark navbar-toggleable-md navbar-expand-md ">
@@ -17,27 +152,26 @@
 		<a class="navbar-brand" href="#"><img src="img/logo.png" alt="logo" id="brand" class="img-responsive"></a>
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="index.html">Home </a>
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Boards <span class="sr-only">(current)</span></a>
 				</li>
-			<li class="nav-item active">
-				<a class="nav-link" id="boards" href="#" active>Boards <span class="sr-only">(current)</span></a>
+				<!-- <li class="nav-item">
+				<a class="nav-link" href="#">Services</a>
 			</li>
-			<!--<li class="nav-item">
+			<li class="nav-item">
 			<a class="nav-link" href="#">Contact</a>
 		</li> -->
 	</ul>
-	<!-- <form class="form-inline mt-2 mt-md-0">
+	<form class="form-inline mt-2 mt-md-0">
 		<input class="form-control mr-sm-2" type="text" placeholder="Search">
 		<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-	</form> -->
-		<h2 id="boardnamevalue"></h2>
+	</form>
 </div>
 </nav>
 
 <!-- Page Content -->
 	<div class="container d-flex flex-wrap" id="mainContainer">
-	<div class="jumbotron row vertical-center-transparent" id="createListid">
+	<div class="jumbotron row vertical-center-transparent">
 		<section class="col-sm-12" style="display:none;">
 			<input type="text" id="createList" class="form-control col-sm-12" placeholder="Enter list title...">
 			<button class="btn btn-success col-sm-6" onclick="listFunction()">Add List</button>
@@ -45,198 +179,26 @@
 		</section>
 		<button type="button" id="showBtn" class="btn btn-light col-sm-12">+Add List</button>
 	</div>
-</div>
-<!-- loaded popover content -->
-<div class="hidden example-popover-content">
-	<ul class="list-group custom-popover" id="popoeverid" onclick="lang1(event);">
-		<!-- <li class="list-group-item listselclass" onclick="showTip(this)">Add Card...</li>
-		<li class="list-group-item listselclass" onclick="showTip(this)">Copy List...</li>
-		<li class="list-group-item listselclass" onclick="showTip(this)">Move List...</li>
-		<li class="list-group-item listselclass" onclick="showTip(this)">Archieve This List</li> -->
-	</ul>
-</div>
 
-<div class="hidden example-popover-title">
-	<h6>Boards</h6>
+	<!-- loaded popover content -->
+	<div class="hidden example-popover-content">
+		<ul class="list-group custom-popover">
+			<li class="list-group-item listselclass" onclick="showTip(this)">Add Card...</li>
+			<li class="list-group-item listselclass" onclick="showTip(this)">Copy List...</li>
+			<li class="list-group-item listselclass" onclick="showTip(this)">Move List...</li>
+			<li class="list-group-item listselclass" onclick="showTip(this)">Archieve This List</li>
+		</ul>
+	</div>
+
+	<div class="hidden example-popover-title">
+		<h6>List Actions</h6>
+	</div>
 </div>
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery-ui.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script type="text/javascript">
-var boardnamehead = getQueryVariable("boardname");
-document.getElementById('boardnamevalue').textContent=boardnamehead;
-
-function getQueryVariable(variable) {
-  var query = window.location.search.substring(1);
-  var vars = query.split("&");
-  for (var i=0;i<vars.length;i++) {
-    var pair = vars[i].split("=");
-    if (pair[0] == variable) {
-      return pair[1];
-    }
-  }
-  console.log('Query Variable ' + variable + ' not found');
-}
-var popoverpoint = document.getElementById('popoeverid');
-if (localStorage.getItem('trelloboardkeys') === null) {
-	var poplistelemt=document.createElement('li');
-	poplistelemt.className= 'list-group-item listselclass';
-	var span = document.createElement('span');
-	span.appendChild(document.createTextNode(boardnamehead));
-	// poplistelemt.addEventListener("click", function(event) {
-	// 	window.location.href = 'landing.html?boardname='+encodeURIComponent(event.target.textContent || event.target.innerText);
-	// });
-	poplistelemt.appendChild(span);
-	popoverpoint.appendChild(poplistelemt);
-}else{
-	var boardnames=localStorage.getItem('trelloboardkeys').split('buntyy1buntyy');
-	for(var i=0;i<boardnames.length;i++){
-		var poplistelemt=document.createElement('li');
-		poplistelemt.className= 'list-group-item listselclass';
-		var span = document.createElement('span');
-		span.appendChild(document.createTextNode(boardnames[i]));
-		// poplistelemt.addEventListener("click", function(event) {
-		// 	window.location.href = 'landing.html?boardname='+encodeURIComponent(event.target.textContent || event.target.innerText);
-		// });
-		poplistelemt.appendChild(span);
-		popoverpoint.appendChild(poplistelemt);
-	}
-}
-function lang1(event) {
-			 var target = event.target || event.srcElement;
-			 window.location.href = 'landing.html?boardname='+encodeURIComponent(event.target.textContent || event.target.innerText);
-	 }
-var head=document.getElementById('boards');
-head.setAttribute("data-trigger", "focus");
-
-$(head).popover({
-	html : true,
-	content: function() {
-		return $(".example-popover-content").html();
-	},
-	title: function() {
-		return $(".example-popover-title").html();
-	}
-});
-
-if (localStorage.getItem(boardnamehead) === null) {
-
-}else{
-	document.getElementById('createListid').style.display='none';
-	document.getElementById('mainContainer').innerHTML=localStorage.getItem(boardnamehead);
-	$('.connected').sortable({
-		connectWith: '.connected'
-	});
-	jQuery.fn.swap = function(b){
-    // method from: http://blog.pengoworks.com/index.cfm/2008/9/24/A-quick-and-dirty-swap-method-for-jQuery
-    b = jQuery(b)[0];
-    var a = this[0];
-    var t = a.parentNode.insertBefore(document.createTextNode(''), a);
-    b.parentNode.insertBefore(a, b);
-    t.parentNode.insertBefore(b, t);
-    t.parentNode.removeChild(t);
-    return this;
-};
-
-
-$( ".divclass" ).draggable({ revert: true, helper: "clone" });
-
-$( ".divclass" ).droppable({
-    accept: ".dragdrop",
-    activeClass: "ui-state-hover",
-    hoverClass: "ui-state-active",
-    drop: function( event, ui ) {
-
-        var draggable = ui.draggable, droppable = $(this),
-            dragPos = draggable.position(), dropPos = droppable.position();
-
-        draggable.css({
-            left: dropPos.left+'px',
-            top: dropPos.top+'px'
-        });
-
-        droppable.css({
-            left: dragPos.left+'px',
-            top: dragPos.top+'px'
-        });
-        draggable.swap(droppable);
-    }
-});
-	var el=document.querySelectorAll("input[type=text]")
-
-	for(var i=0; i < el.length; i++){
-	    el[i].addEventListener('keyup', function (event) {
-				event.preventDefault();
-				if (event.keyCode === 13) {
-					if(this.classList.contains('inputContainerClass')){
-						if(this.value.trim() != "")
-						{
-							var sblng=getSiblings(this.parentNode);
-							cardFunction(this,sblng[1],this.id,sblng[1].id);
-							localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-						}
-					}
-				}
-		  }, false);
-	}
-	$("button").click(function() {
-    if(this.classList.contains('removeCardBtn')){
-			document.getElementById("mainContainer").removeChild(this.parentNode.parentNode);
-			localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-		}
-		if(this.classList.contains('closeCardBtn')){
-			var sib= getSiblings(this);
-			sib[0].value="";
-			var sib1= getSiblings(this.parentNode);
-			sib1[3].style.display = 'block';
-			this.parentNode.style.display = 'none';
-			localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-		}
-		if(this.classList.contains('custombtnclass')){
-			var sib1= getSiblings(this.parentNode);
-			sib1[3].style.display = 'block';
-			this.parentNode.style.display = 'none';
-			localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-		}
-		if(this.classList.contains('editlistBtn')){
-			var item = this;
-			var siblings = getSiblings(item);
-			if(item.classList.contains("on")) {
-				$(siblings[1]).hide();
-				$(siblings[0]).show();
-				$(siblings[0]).text($(siblings[1]).val());
-				item.textContent = 'edit';
-				item.classList.remove("on");
-				item.classList.remove("btn-danger");
-				item.classList.add("off");
-				item.classList.add("btn-info");
-			} else {
-				$(siblings[0]).hide();
-				$(siblings[1]).show();
-				$(siblings[1]).val($(siblings[0]).text());
-				$(siblings[1]).focus();
-				item.textContent = 'save';
-				item.classList.remove("off");
-				item.classList.remove("btn-info");
-				item.classList.add("on");
-				item.classList.add("btn-danger");
-			}
-			localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-		}
-		if(this.classList.contains('savecardBtn')){
-				var cursiblings = getSiblings(this);
-				console.log(cursiblings);
-				var sblng=getSiblings(this.parentNode);
-				console.log(sblng);
-				if(cursiblings[0].value.trim() != "")
-				{
-					cardFunction(cursiblings[0],sblng[1],cursiblings[0].id,sblng[1].id);
-					localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
-				}
-		}
-	});
-}
 var mainContainer = document.getElementById("mainContainer");
 var mainSection = document.getElementsByClassName('jumbotron');
 var poplist=document.getElementsByClassName("example");
@@ -246,14 +208,12 @@ createList.addEventListener("keyup", function(event) {
 	event.preventDefault();
 	if (event.keyCode === 13) {
 		listFunction();
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 	}
 });
 function listFunction() {
 	if(createList.value.trim() != ""){
 		createNewList(document.getElementById('createList').value);
 		createList.value="";
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 	}
 }
 function showTip(ele){
@@ -266,7 +226,6 @@ document.getElementById('showBtn').addEventListener("click", function(event) {
 	this.style.display = 'none';
 	this.parentNode.classList.remove('vertical-center-transparent');
 	this.parentNode.classList.add('vertical-center');
-	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 });
 document.getElementById('hideBtn').addEventListener("click", function(event) {
 	event.preventDefault();
@@ -277,7 +236,6 @@ document.getElementById('hideBtn').addEventListener("click", function(event) {
 	this.parentNode.style.display = 'none';
 	this.parentNode.parentNode.classList.add('vertical-center-transparent');
 	this.parentNode.parentNode.classList.remove('vertical-center');
-	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 });
 function createNewList(text){
 	iid++;
@@ -298,16 +256,16 @@ function createNewList(text){
 	h5.style = 'text-align:left;color:white;';
 	h5.setAttribute("contenteditable","true");
 
-	// var closeBtn = document.createElement('button');
-	// closeBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-outline-danger';
-	// closeBtn.style = 'margin-top: 15px'
-	// closeBtn.textContent = 'x';
+	var closeBtn = document.createElement('button');
+	closeBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-outline-danger';
+	closeBtn.style = 'margin-top: 15px'
+	closeBtn.textContent = 'x';
 	// var spanBtn = document.createElement('span');
 	// spanBtn.className = 'col-sm-2 flex-fill btn btn-sm btn-link';
-	var closeA = document.createElement("button");
+	var closeA = document.createElement("h4");
 	closeA.textContent = 'x';
 	closeA.tabindex="0";
-	closeA.className = "btn btn-light removeCardBtn";
+	closeA.className = "btn btn-light";
 	closeA.style= 'font-size: 1.25rem;';
 	// closeA.setAttribute("data-trigger", "focus");
 	//
@@ -326,7 +284,6 @@ function createNewList(text){
 	// };
 	closeA.onclick = function() {
 		document.getElementById("mainContainer").removeChild(section);
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 	};
 	headerDiv.appendChild(h5);
 	headerDiv.appendChild(closeA);
@@ -346,7 +303,7 @@ function createNewList(text){
 	inputContainer.type = "text";
 	inputContainer.name = "listinput" + iid;
 	inputContainer.id = "listinput" + iid;
-	inputContainer.className = 'col-md-12 form-control inputContainerClass';
+	inputContainer.className = 'col-md-12 form-control';
 	inputContainer.placeholder = 'Create card';
 	inputContainer.addEventListener("keyup", function(event) {
 		event.preventDefault();
@@ -354,30 +311,27 @@ function createNewList(text){
 			if(inputContainer.value.trim() != "")
 			{
 				cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
-				localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 			}
 		}
 	});
 	var addCardBtn = document.createElement('button');
 	addCardBtn.textContent = 'Save Card';
-	addCardBtn.className = 'col-md-4 btn btn-primary savecardBtn';
+	addCardBtn.className = 'col-md-4 btn btn-primary';
 	addCardBtn.onclick = function() {
 		if(inputContainer.value.trim() != "")
 		{
 			cardFunction(inputContainer,msgContainer,inputContainer.id,msgContainer.id);
-			localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 		}
 	};
 	var closeCardBtn = document.createElement('button');
 	closeCardBtn.textContent = 'X';
-	closeCardBtn.className = 'btn btn-link col-sm-2 closeCardBtn';
+	closeCardBtn.className = 'btn btn-link col-sm-2';
 	closeCardBtn.onclick = function() {
 		var sib= getSiblings(this);
 		sib[0].value="";
 		var sib1= getSiblings(this.parentNode);
 		sib1[3].style.display = 'block';
 		this.parentNode.style.display = 'none';
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 	};
 	div.appendChild(inputContainer);
 	div.appendChild(addCardBtn);
@@ -394,7 +348,6 @@ function createNewList(text){
 		var sib1= getSiblings(this.parentNode);
 		sib1[3].style.display = 'block';
 		this.parentNode.style.display = 'none';
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 	});
 	divBtn.appendChild(addCardDefaultBtn);
 	section.appendChild(headerDiv);
@@ -404,36 +357,12 @@ function createNewList(text){
 	section.appendChild(divBtn);
 	section.appendChild(div);
 	mainContainer.appendChild(section);
-	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 }
 function cardFunction(inputContainer,msgContainer,inputContainerid,msgContainerid) {
 	createCard(inputContainer,msgContainer,inputContainerid,msgContainerid);
 	inputContainer.value="";
 	$('.connected').sortable({
 		connectWith: '.connected'
-	});
-	$( ".divclass" ).draggable({ revert: true, helper: "clone" });
-
-	$( ".divclass" ).droppable({
-	    accept: ".dragdrop",
-	    activeClass: "ui-state-hover",
-	    hoverClass: "ui-state-active",
-	    drop: function( event, ui ) {
-
-	        var draggable = ui.draggable, droppable = $(this),
-	            dragPos = draggable.position(), dropPos = droppable.position();
-
-	        draggable.css({
-	            left: dropPos.left+'px',
-	            top: dropPos.top+'px'
-	        });
-
-	        droppable.css({
-	            left: dragPos.left+'px',
-	            top: dragPos.top+'px'
-	        });
-	        draggable.swap(droppable);
-	    }
 	});
 }
 function createCard(card,list,cardid,listid) {
@@ -453,7 +382,7 @@ function createCard(card,list,cardid,listid) {
 	// var editBtn = document.createElement('input');
 	// editBtn.type = 'image';
 	// editBtn.src = 'img/editicon.png';
-	editBtn.className = 'off col-sm-3 btn btn-info editlistBtn';
+	editBtn.className = 'off col-sm-3 btn btn-info';
 	editBtn.onclick = function() {
 		var item = this;
 		//console.log(getSiblings(item));
@@ -480,7 +409,6 @@ function createCard(card,list,cardid,listid) {
 			item.classList.add("on");
 			item.classList.add("btn-danger");
 		}
-		localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 		// item.src = 'img/editicon.png';
 		//	item.textContent = 'edit';
 	};
@@ -490,7 +418,6 @@ function createCard(card,list,cardid,listid) {
 	entry.appendChild(editBtn);
 	// entry.addEventListener("focusout", stopEdit);
 	list.appendChild(entry);
-	localStorage.setItem(boardnamehead, document.getElementById("mainContainer").innerHTML);
 }
 var getSiblings = function (elem) {
 	var siblings = [];
@@ -527,6 +454,14 @@ $(function(){
 		e.preventDefault();
 	});
 });
+// function stopEdit() {
+// 	var children = elementChildren(this);
+// 	$(children[1]).hide();
+// 	$(children[0]).show();
+// 	$(children[0]).text($(children[1]).val());
+// 	children[2].classList.remove("on");
+// 	children[2].classList.add("off");
+// }
 </script>
 </body>
 </html>
